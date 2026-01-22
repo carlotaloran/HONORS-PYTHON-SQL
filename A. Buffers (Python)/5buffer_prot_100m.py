@@ -1,0 +1,104 @@
+# --------------------------------------------------------------------------------------------
+# This script removes protected land from all buffers (including b0) in the 100M 
+# specification. It outputs shapefiles b*_ring_prot, saved to each buffer folder.
+# --------------------------------------------------------------------------------------------
+
+# --------------------------------------------------------------------------------------------
+# SETUP
+# --------------------------------------------------------------------------------------------
+
+# Dependencies & delete shapefile function definition
+import os
+import processing
+from qgis.core import QgsProcessingFeatureSourceDefinition, QgsFeatureRequest
+def delete_shapefile(path):
+    for ext in [".shp", ".shx", ".dbf", ".prj", ".cpg"]:
+        p = path.replace(".shp", ext)
+        if os.path.exists(p):
+            os.remove(p)
+
+# Path and buffer list definitions
+cd = "/zfs/students/cloranlo/Downloads/HONS Rural Credit & Deforestation/" \
+     "CREDIT_DEFOREST_DATA/CREDIT_DEFOREST_DATA_CLEAN/CREDIT_DATA/GLEBAS/100M_BUFFERS/"
+protected = "/zfs/students/cloranlo/Downloads/HONS Rural Credit & Deforestation/" \
+            "CREDIT_DEFOREST_DATA/SHAPEFILES/Brazil_UCS/CREDIT_DEFOREST_brazil_UCS_fixed.shp"
+buffers = [
+    "b0",
+    "b100",
+    "b200",
+    "b300",
+    "b400",
+    "b500",
+    "b600",
+    "b700",
+    "b800",
+    "b900",
+    "b1000",
+    "b1100",
+    "b1200",
+    "b1300",
+    "b1400",
+    "b1500",
+    "b1600",
+    "b1700",
+    "b1800",
+    "b1900",
+    "b2000"
+]
+
+
+# --------------------------------------------------------------------------------------------
+# Clean buffers
+# --------------------------------------------------------------------------------------------
+
+# Protected area geometry fix
+protected_src = QgsProcessingFeatureSourceDefinition(
+    protected,
+    flags=QgsProcessingFeatureSourceDefinition.FlagOverrideDefaultGeometryCheck,
+    geometryCheck=QgsFeatureRequest.GeometrySkipInvalid
+)
+
+# Difference
+for b in buffers:
+
+    input_vector = (
+        f"{cd}{b}/{b}.shp" if b == "b0"
+        else f"{cd}{b}/{b}_ring.shp"
+    )
+
+    fixed_vector = (
+        f"{cd}{b}/{b}_fixed.shp" if b == "b0"
+        else f"{cd}{b}/{b}_fixed_ring.shp"
+    )
+    
+    output_vector = (
+        f"{cd}{b}/{b}_prot.shp" if b == "b0"
+        else f"{cd}{b}/{b}_ring_prot.shp"
+    )
+
+    # Cleanup old outputs
+    for s in [fixed_vector, output_vector]:
+        delete_shapefile(s)
+
+    # Fix buffer/ring geometry
+    processing.run("native:fixgeometries", {
+        'INPUT': input_vector,
+        'METHOD': 1,
+        'OUTPUT': fixed_vector
+    })
+
+    fixed_src = QgsProcessingFeatureSourceDefinition(
+        fixed_vector,
+        flags=QgsProcessingFeatureSourceDefinition.FlagOverrideDefaultGeometryCheck,
+        geometryCheck=QgsFeatureRequest.GeometrySkipInvalid
+    )
+
+    # Remove protected areas
+    processing.run("native:difference", {
+        'INPUT': fixed_src,
+        'OVERLAY': protected_src,
+        'OUTPUT': output_vector
+    })
+
+    # Delete temp file
+    delete_shapefile(fixed_vector)
