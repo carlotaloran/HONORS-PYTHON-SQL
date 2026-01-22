@@ -18,7 +18,7 @@ This script take the b0 file created (which identifies unique farms with ID vari
 Each of these files makes buffers from b0 at different distances for each specification (NF and 100M). They are saved to folders CREDIT_DATA/GLEBAS/**specification**_BUFFERS/b**distance** as b**distance**. The NF specification makes pairs (250-500, 500-1000, 750-1500, 1000-2000), and the 100M specification makes buffers at multiples of 100m until reaching 2000. One meter is approximated to 9.0785x10^-6 decimal degrees (see Appendix A). This takes 15 minutes for the NF specification, and 30 for the 100M specification.
 
 ### 4. MAKE RINGS:
-These files convert buffers at all distances into disjoint rings by subtracting inner buffer overlap, for both specifications. They are saved to folders CREDIT_DATA/GLEBAS/**specification**_BUFFERS/b**distance** as b**distance**_ring. This runs in about 45m for the NF specification and 1h for the 100M specification.
+These files convert buffers at all distances into disjoint rings by subtracting inner buffer overlap, for both specifications. They are saved to folders CREDIT_DATA/GLEBAS/**specification**_BUFFERS/b**distance** as b**distance**_ring. This runs in about 45m for the NF specification and 1.5h for the 100M specification.
 
 ### 5. REMOVE PROTECTED AREAS:
 These files remove overlap with protected areas from all buffers (including b0), and both specifications. They are saved to folders CREDIT_DATA/GLEBAS/**specification**_BUFFERS/b**distance** as b**distance**_ring_prot. This runs in about 1h for the NF specification and 1.5h for the 100M specification.
