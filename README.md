@@ -70,7 +70,7 @@ These files compute zonal histograms for each buffer–year combination using Ma
                 
 
 ## CLASSIFY CONTRACTS FOLDER
- This folder contains a script to re-classify credit contracts into cost and investment categories (see Theoretical Framework), edited but heavily written by ChatGPT. It uses a stricter definition for cost credit, discussed in the Appendix. It re-classifies 771590 contracts. The script inputs the contract file 'operacao_gleba_master', cleaned in STATA, and outputs a re-classified file, 'operacao_gleba_master_reclass'. Both are found in folder 'CREDIT/OPERACAO_GLEBA'. Run this script on the local terminal.
+ This folder contains a script to re-classify credit contracts into cost and investment categories (see Theoretical Framework), edited but heavily written by ChatGPT. It uses a stricter definition for cost credit, discussed in the Appendix. The script inputs the contract file 'operacao_gleba_master', cleaned in STATA, and outputs a re-classified file, 'operacao_gleba_master_reclass', mapping contract IDs to the new classification. Both files are found in folder 'CREDIT/OPERACAO_GLEBA'. Run this script on the local terminal.
 
 ## (SOME) SUMMARY STATISTICS FOLDER
 This folder contains SQL queries to obtain summary statistics included from several rounds of agricultural surveys. 

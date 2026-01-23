@@ -14,8 +14,8 @@ import pandas as pd
 import unicodedata
 
 # Path definitions
-CSV_PATH = "/Users/carlotaloranlopez/Desktop/CREDIT_DEFOREST/CREDIT_DEFOREST_DATA/CREDIT_DEFOREST_DATA_CLEAN/CREDIT_DATA/OPERACAO_GLEBA/operacao_gleba_master.csv"
-OUTPUT_PATH = "/Users/carlotaloranlopez/Desktop/CREDIT_DEFOREST/CREDIT_DEFOREST_DATA/CREDIT_DEFOREST_DATA_CLEAN/CREDIT_DATA/OPERACAO_GLEBA/operacao_gleba_master_ic.csv"
+CSV_PATH = "/Users/carlotaloranlopez/Desktop/CREDIT_DEFOREST/DATA/DATA_CLEAN/CREDIT/CONTRACT/operacao_gleba_master.csv"
+OUTPUT_PATH = "/Users/carlotaloranlopez/Desktop/CREDIT_DEFOREST/DATA/DATA_CLEAN/CREDIT/CONTRACT/operacao_gleba_master_reclass.csv"
 
 # Columns used for purpose / rules
 CATEGORICAL_COLS = [
@@ -127,7 +127,7 @@ for col in NUMERIC_COLS:
 df["cd_finalidade_corrected"] = df.apply(classify, axis=1)
 
 # --------------------------------------------------------------------------------------------
-# Save reduced output (ONLY contract_recipient_id + corrected classification)
+# Save reduced output (contract_recipient_id + corrected classification)
 # --------------------------------------------------------------------------------------------
 
 output_df = df[["contract_recipient_id", "cd_finalidade_corrected"]].copy()
