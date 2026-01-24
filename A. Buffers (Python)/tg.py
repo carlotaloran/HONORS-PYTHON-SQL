@@ -117,7 +117,7 @@ gleba_src = QgsProcessingFeatureSourceDefinition(
 processing.run("native:joinattributesbylocation", {
     'INPUT': farm_src,
     'PREDICATE':[1,2,4],
-    'JOIN': gleba_scr,
+    'JOIN': gleba_src,
     'JOIN_FIELDS':['farm_id','year'],
     'METHOD':0,
     'DISCARD_NONMATCHING':False,
