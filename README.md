@@ -1,14 +1,16 @@
 # HONORS: PYTHON & SQL PORTION
 
 ## BUFFERS FOLDER
-This folder contains Python scripts to construct buffers for the 100m and near-far specifications, and compute thier zonal histograms based on land cover rasters. Scripts are designed to be run sequentially and rely on intermediate shapefiles. Running all scripts together may crash, and our lab computers need babysitting. Independent files run fine in the lab, but some take several hours.
+This folder contains Python scripts to construct buffers for the 100m and near-far specifications, with and without farm estimates, and compute thier zonal histograms based on land cover rasters. Scripts are designed to be run sequentially and rely on intermediate shapefiles. Running all scripts together may crash (hence why I separated them), and our lab computers need babysitting. Independent files run fine in the lab, but some take several hours.
 
 ### SETUP: 
 Make sure the relevant paths exist! Below is an outline.
 
-Buffers are constructed from gleba shapefiles, which come from the SICOR. These files were given as wkt geometries in .csv format. I cleaned the raw files in STATA and removed outliers in GIS (see Appendix A). The clean file has unique contract identifier farm_id (which is a poor variable name because, as we will see, contracts do not map to farms uniquely). This file is stored in the clean data folder, under CREDIT/GLEBAS/glebas_matched_nomisreported. Land use rasters are stored in the raw data folder, under DEFORESTATION_DATA/Mapbiomas.
+Buffers are constructed from gleba shapefiles, which come from the SICOR. These files were given as wkt geometries in .csv format. I cleaned the raw files in STATA and removed outliers in GIS (see Appendix A). The clean file has unique contract identifier contract_recipient_id. This file is stored in the clean data folder, under CREDIT/GLEBAS/glebas_matched_nomisreported. Land use rasters are stored in the raw data folder, under DEFORESTATION_DATA/Mapbiomas.
 
-In these scripts I use a farm estimate created by dissolving overlapping geometries (hence why everything is stored instide folder 'FARMS'). I calculated manually these same deforestation estimates without dissolving these goemetries, but using the same process (these are inside the same paths, but under folder 'NO_FARMS').
+The NO_FARMS (G) folder considers the first buffer to be the polt associated with a contract, without taking the union of overlapping geometries. In the FARMS (F) folder, I use a farm estimate of farm area created by dissolving overlapping contract geometries. 
+
+Each folder is self-contained, and script are numbered. The longest sequence of scripts (for my preferred specification) uses the numbering below.
 
 
 ### 1. MAKE BUFFER 0: 
@@ -29,23 +31,23 @@ These files remove overlap with protected areas from all buffers (including b0),
 ### 6. ZONAL HISTOGRAM 1 (PROT):
 These files compute zonal histograms for each buffer–year combination using Mapbiomas rasters. Each new variable represents a pixel count of all unique values from the raster, for each polygon. Output from this script is saved as several .csv files in the clean data folder, under DEFORESTATION/FARMS/**specification**_BUFFERS/b**distance**. This takes about 1.5h for the NF specification and 3h for the 100M specification.
 
-### 7. REMOVE PUBLIC LAND:
+### 7. STUVA CHECK (CROP OVERLAPPING, TREATED BUFFERS): 
 
-### 8. ZONAL HISTOGRAM 2 (PRIVATE):
+### 8. ZONAL HISTOGRAM 2 (STUVA):
 
-### 9. STUVA CHECK (CROP OVERLAPPING, TREATED BUFFERS):
+### 9. REMOVE PUBLIC LAND:
 
-### 10. ZONAL HISTOGRAM 3 (STUVA):
+### 10. ZONAL HISTOGRAM 3 (PRIVATE):
 
-### 11. MAKE BLOBS:
+### 11. MAKE CLUSTERS:
 
-### 12. ZONAL HISTOGRAM 4 (BLOB):
+### 12. ZONAL HISTOGRAM 4 (CLUSTERS):
 
-### 13. GET FARM BLOB:
+### 13. GET FARM CLUSTER:
 
 ### 14. GET BUFFER STATE:
 
-### 15. GET FARM CHARACTERISTICS (AREA, DISTANCE TO OTHER FARMS, TBD DISTANCE TO ROADS, DISTANCE TO URBAN AREAS, SLOPE):
+### 15. GET FARM CHARACTERISTICS (AREA, DISTANCE TO OTHER FARMS):
 
 
 ### Path outline:
