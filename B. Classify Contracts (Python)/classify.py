@@ -51,7 +51,7 @@ program_mapping = {
     "proirriga": "investimento",
     "pronaf": None,
     "pronamp": None,
-    "14": None
+    "Other": None
 }
 
 # --------------------------------------------------------------------------------------------
