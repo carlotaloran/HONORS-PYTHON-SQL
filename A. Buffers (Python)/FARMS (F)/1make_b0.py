@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------------------------
-# This script processes the clen glebas csv from STATA and merges overlapping polygons to 
+# This script processes the clean glebas csv from STATA and merges overlapping polygons to 
 # create new farm IDs (buffer 0). Two shapefiles of b0 are saved, one to folder NF_BUFFERS
 # and another to 100M_BUFFERS. Disjoint polygons are kept as separate features.
 # --------------------------------------------------------------------------------------------

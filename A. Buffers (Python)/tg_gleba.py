@@ -41,6 +41,12 @@ for file in [b0_NF, b0_100]:
     )
 
 
+
+
+
+
+
+
 # Create variables to set working directory, buffer dictionary with buffer names and distance in decimal degrees, and universal input file
 cd = "/zfs/students/cloranlo/Downloads/CREDIT_DEFOREST/DATA/DATA_CLEAN/CREDIT/GLEBAS/NO_FARMS/100M_BUFFERS/"
 buffers_100 = {
@@ -97,6 +103,12 @@ for b in buffers_100:
     )
 
 
+
+
+
+
+
+
 # Create variables to set working directory, buffer dictionary with buffer names and distance in decimal degrees, and universal input file
 cd = "/zfs/students/cloranlo/Downloads/CREDIT_DEFOREST/DATA/DATA_CLEAN/CREDIT/GLEBAS/NO_FARMS/NF_BUFFERS/"
 buffers_nf = {
@@ -139,6 +151,11 @@ for b in buffers_nf:
             'OUTPUT': output_vector
         }
     )
+
+
+
+
+
 
 
 # Path and buffer pair definition
