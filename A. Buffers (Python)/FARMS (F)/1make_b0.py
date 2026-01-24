@@ -8,11 +8,10 @@
 # SETUP
 # --------------------------------------------------------------------------------------------
 
-# Import dependencies
+# Dependencies & delete shapefile function definition
 import os
 import processing
-
-# Function to delete a shapefile if it exists
+from qgis.core import QgsProcessingFeatureSourceDefinition, QgsFeatureRequest
 def delete_shapefile(path):
     for ext in [".shp", ".shx", ".dbf", ".prj", ".cpg"]:
         p = path.replace(".shp", ext)
@@ -22,7 +21,7 @@ def delete_shapefile(path):
 # Set working directory and file paths
 cd = "/zfs/students/cloranlo/Downloads/CREDIT_DEFOREST/DATA/DATA_CLEAN/CREDIT/GLEBAS/"
 csv_file = os.path.join(cd, "glebas_matched_master_nooutliers/glebas_matched_master_nooutliers.csv")
-glebas_fixed = os.path.join(cd, "glebas_matched_master_nooutliers/glebas_matched_master_nooutliers.shp")
+glebas_fixed = os.path.join(cd, "glebas_matched_master_nooutliers/glebas_matched_master_nooutliers_fixed.shp")
 b0_NF = os.path.join(cd, "FARMS/NF_BUFFERS/b0/b0.shp")  # Final output
 b0_100 = os.path.join(cd, "FARMS/100M_BUFFERS/b0/b0.shp")  # Final output
 

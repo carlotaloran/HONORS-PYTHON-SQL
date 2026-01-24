@@ -25,8 +25,8 @@ cd = "/zfs/students/cloranlo/Downloads/CREDIT_DEFOREST/DATA/DATA_CLEAN/CREDIT/GL
 farm_file = os.path.join(cd, "FARMS/NF_BUFFERS/b0/b0.shp")
 farm_fixed = os.path.join(cd, "FARMS/NF_BUFFERS/b0/b0_fixed.shp")
 gleba_file = os.path.join(cd, "glebas_matched_master_nooutliers/glebas_matched_master_nooutliers.shp")
-gleba_fixed = os.path.join(cd, "glebas_matched_master_nooutliers/glebas_matched_master_nooutliers.shp")
-farm_to_contract = os.path.join(cd, "farm_to_contract.csv")
+gleba_fixed = os.path.join(cd, "glebas_matched_master_nooutliers/glebas_matched_master_nooutliers_fixed.shp")
+farm_to_contract = os.path.join(cd, "glebas_farm_to_contract_id.csv")
 
 
 # --------------------------------------------------------------------------------------------
